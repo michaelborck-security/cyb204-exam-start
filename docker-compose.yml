@@ -1,0 +1,22 @@
+services:
+  attacker:
+    image: michaelborck/cyb204-attacker:latest
+    container_name: kali-attacker
+    stdin_open: true 
+    tty: true        
+    networks:
+      exam-network:
+        ipv4_address: 172.20.0.10
+  target:
+    image: michaelborck/cyb204-target-server:latest
+    container_name: target-server
+    hostname: simplecorp-server
+    networks:
+      exam-network:
+        ipv4_address: 172.20.0.100
+networks:
+  exam-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
